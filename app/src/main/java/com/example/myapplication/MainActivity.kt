@@ -42,7 +42,8 @@ class MainActivity : ComponentActivity() {
 //                        R.string.signature_text
 //                    )
 //                    )
-                    Article(title = stringResource(R.string.title), paragraph1 = stringResource(R.string.paragraph1), paragraph2 = stringResource(R.string.paragraph2))
+//                    Article(title = stringResource(R.string.title), paragraph1 = stringResource(R.string.paragraph1), paragraph2 = stringResource(R.string.paragraph2))
+                    TaskHandler(text1 = stringResource(R.string.task_handler_text1), text2 = stringResource(R.string.task_handler_text2))
                 }
             }
         }
@@ -128,12 +129,35 @@ fun Article (title: String, paragraph1: String, paragraph2: String, modifier: Mo
     }
 }
 
+@Composable
+fun TaskHandler(text1: String, text2: String, modifier: Modifier = Modifier) {
+    val imageIcon = painterResource(R.drawable.ic_task_completed)
+
+    Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier) {
+        Image(
+            painter = imageIcon,
+            contentDescription = null
+        )
+        Text(
+            text = text1,
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            modifier = Modifier.padding(top = 24.dp, bottom = 8.dp)
+        )
+        Text(
+            text = text2,
+            fontSize = 16.sp
+        )
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
 fun BirthDayCardPreview() {
     MyApplicationTheme {
 //        GreetingImage("Happy BirthDay Dylan Noel", from = "Merveille and Audrey")
-        Article(title = stringResource(R.string.title), paragraph1 = stringResource(R.string.paragraph1), paragraph2 = stringResource(R.string.paragraph2))
+//        Article(title = stringResource(R.string.title), paragraph1 = stringResource(R.string.paragraph1), paragraph2 = stringResource(R.string.paragraph2))
+        TaskHandler(text1 = stringResource(R.string.task_handler_text1), text2 = stringResource(R.string.task_handler_text2))
+
     }
 }
