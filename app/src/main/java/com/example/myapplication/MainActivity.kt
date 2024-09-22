@@ -113,11 +113,13 @@ fun Article (title: String, paragraph1: String, paragraph2: String, modifier: Mo
             Text(
                 text = paragraph1,
                 fontSize = defaultFontSize,
+                textAlign = TextAlign.Justify,
                 lineHeight = defaultLineHeight,
             )
             Text(
                 text = paragraph2,
                 fontSize = defaultFontSize,
+                textAlign = TextAlign.Justify,
                 lineHeight = defaultLineHeight,
                 modifier = Modifier.padding(top = 16.dp)
             )
