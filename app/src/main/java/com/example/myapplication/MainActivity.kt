@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.stringResource
 import com.example.myapplication.ui.theme.MyApplicationTheme
@@ -43,7 +44,9 @@ class MainActivity : ComponentActivity() {
 //                    )
 //                    )
 //                    Article(title = stringResource(R.string.title), paragraph1 = stringResource(R.string.paragraph1), paragraph2 = stringResource(R.string.paragraph2))
-                    TaskHandler(text1 = stringResource(R.string.task_handler_text1), text2 = stringResource(R.string.task_handler_text2))
+//                    TaskHandler(text1 = stringResource(R.string.task_handler_text1), text2 = stringResource(R.string.task_handler_text2))
+//                    QuadrantsTP(title1 = stringResource(R.string.title1), description1 = stringResource(R.string.description1), title2 = stringResource(R.string.title2), description2 = stringResource(R.string.description2), title3 = stringResource(R.string.title3), description3 = stringResource(R.string.description3), title4 = stringResource(R.string.title4), description4 = stringResource(R.string.description4))
+                    Quadrants(modifier = Modifier)
                 }
             }
         }
@@ -52,7 +55,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun GreetingText (message: String, from: String, modifier: Modifier = Modifier) {
-    Column ( verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier.padding(30.dp)) {
+    Column ( verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier.padding(30.dp).fillMaxSize(0.5f)) {
         Text(
             text = message,
             fontSize = 110.sp,
@@ -151,13 +154,63 @@ fun TaskHandler(text1: String, text2: String, modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun QuadrantItem ( title: String, description: String, modifier: Modifier) {
+    Column ( verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally, modifier = modifier.fillMaxWidth(0.5f).fillMaxHeight().padding(16.dp)){
+        Text(
+            text = title,
+            fontWeight = FontWeight.Bold,
+            fontSize = 16.sp,
+            color = Color.Black
+        )
+        Text(
+            text = description,
+            fontSize = 16.sp,
+            textAlign = TextAlign.Justify,
+            color = Color.Black
+        )
+    }
+}
+
+@Composable
+fun Quadrants (modifier: Modifier = Modifier) {
+    Column (modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+        Row (Modifier.fillMaxWidth().weight(1f), horizontalArrangement = Arrangement.Center) {
+            QuadrantItem(
+                title = stringResource(R.string.title1),
+                description = stringResource(R.string.description1),
+                modifier = Modifier.weight(1f).background(Color(0xFFEADDFF))
+            )
+            QuadrantItem(
+                title = stringResource(R.string.title2),
+                description = stringResource(R.string.description2),
+                modifier = Modifier.weight(1f).background(Color(0xFFD0BCFF))
+            )
+        }
+        Row (Modifier.fillMaxWidth().weight(1f), horizontalArrangement = Arrangement.Center) {
+            QuadrantItem(
+                title = stringResource(R.string.title3),
+                description = stringResource(R.string.description3),
+                modifier = Modifier.weight(1f).background(Color(0xFFB69DF8))
+            )
+            QuadrantItem(
+                title = stringResource(R.string.title4),
+                description = stringResource(R.string.description4),
+                modifier = Modifier.weight(1f).background(Color(0xFFF6EDFF))
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun BirthDayCardPreview() {
     MyApplicationTheme {
 //        GreetingImage("Happy BirthDay Dylan Noel", from = "Merveille and Audrey")
 //        Article(title = stringResource(R.string.title), paragraph1 = stringResource(R.string.paragraph1), paragraph2 = stringResource(R.string.paragraph2))
-        TaskHandler(text1 = stringResource(R.string.task_handler_text1), text2 = stringResource(R.string.task_handler_text2))
-
+//        TaskHandler(text1 = stringResource(R.string.task_handler_text1), text2 = stringResource(R.string.task_handler_text2))
+//        QuadrantItem( title = stringResource(R.string.title1), description = stringResource(R.string.description1), modifier = Modifier)
+        Quadrants(modifier = Modifier)
+//        QuadrantsTP(title1 = stringResource(R.string.title1), description1 = stringResource(R.string.description1), title2 = stringResource(R.string.title2), description2 = stringResource(R.string.description2), title3 = stringResource(R.string.title3), description3 = stringResource(R.string.description3), title4 = stringResource(R.string.title4), description4 = stringResource(R.string.description4))
     }
 }
